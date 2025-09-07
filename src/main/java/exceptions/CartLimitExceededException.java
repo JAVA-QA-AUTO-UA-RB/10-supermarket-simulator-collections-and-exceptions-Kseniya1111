@@ -1,6 +1,8 @@
+
 package main.java.exceptions;
 
-public class CartLimitExceededException extends Exception {
+
+public class CartLimitExceededException extends RuntimeException {
     public CartLimitExceededException(String message) {
         super(message);
     }

@@ -1,8 +1,8 @@
 package main.java;
-
-import main.java.exceptions.InsufficientFundsException;
-import main.java.exceptions.NoSuchProductException;
-import main.java.exceptions.CartLimitExceededException;
+import main.java.exceptions.*;
+//import main.java.exceptions.InsufficientFundsException;
+//import main.java.exceptions.NoSuchProductException;
+//import main.java.exceptions.CartLimitExceededException;
 
 import java.util.ArrayList;
 
@@ -14,14 +14,14 @@ public class ShoppingCart {
     private double lastDiscount;
     private double lastTotal;
 
-    public void addToCart(String product) throws CartLimitExceededException {
+    public void addToCart(String product)  {
         if (cart.size() >= cartLimit) {
             throw new CartLimitExceededException("Ліміт кошика досягнуто! Максимум " + cartLimit + " товарів.");
         }
         cart.add(product);
     }
 
-    public void checkout(PriceCatalog catalog, double payment) throws InsufficientFundsException, NoSuchProductException {
+    public void checkout(PriceCatalog catalog, double payment) {
         double subtotal = 0.0;
         for (String product : cart) {
             double price = catalog.getPrice(product);
@@ -33,7 +33,6 @@ public class ShoppingCart {
         double tax = subtotal * 0.1;
         lastTax = tax;
         double discount = Math.random() * 0.1 + 0.05;
-        lastDiscount = discount;
 
         if (cart.contains("Milk")) {
             discount += 0.05;
